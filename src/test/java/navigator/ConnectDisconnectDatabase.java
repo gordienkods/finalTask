@@ -1,5 +1,6 @@
 package navigator;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +19,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class ConnectDisconnectDatabase {
+    private static final Logger log = Logger.getLogger(AnyWebDriver.class);
     private WebDriver webDriver;
 
     public ConnectDisconnectDatabase (WebDriver webDriver) {
@@ -25,11 +27,8 @@ public class ConnectDisconnectDatabase {
         PageFactory.initElements(webDriver, this);
     }
 
-    public void getWebPage(){
-        webDriver.get("http://www.ranorex.com/web-testing-examples/vip/");
-    }
-
     public void connectToDatabase(){
+        log.info("Connecting to database...");
         CommonElementsOperations elements = new CommonElementsOperations(webDriver);
         String parentWindowHandle = webDriver.getWindowHandle();
         String popupWindowHandle = null;
@@ -51,5 +50,6 @@ public class ConnectDisconnectDatabase {
         webDriver.switchTo().window(parentWindowHandle);
         Wait<WebDriver> wait = new WebDriverWait(webDriver, 10, 500);
         wait.until(ExpectedConditions.textToBePresentInElement(elements.getDatabaseCondition(), "Online"));
+        log.info("Successful connect to database...");
     }
 }

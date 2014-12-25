@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class CorrectOperations {
+
     private WebDriver webDriver;
     private ArrayList<String> vipsList = new ArrayList<String>();
     public CorrectOperations (WebDriver webDriver) {
@@ -100,7 +101,7 @@ public class CorrectOperations {
         iterator = windowSet.iterator();
         while(iterator.hasNext()) {
             popupWindowHandle = iterator.next().toString();
-            if(parentWindowHandle.equals(popupWindowHandle) == false){
+            if(!parentWindowHandle.equals(popupWindowHandle)){
                 webDriver.switchTo().window(popupWindowHandle);
                 successSaveVips = elements.successfulAddVipsGetText();
                 webDriver.findElement(By.xpath("//button[text()='OK']")).click();
@@ -141,5 +142,4 @@ public class CorrectOperations {
             countLineInVipsTable++;
         }while (true);
     }
-
 }

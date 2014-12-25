@@ -2,6 +2,7 @@ package tests;
 
 import navigator.AnyWebDriver;
 import navigator.GetMainWebPage;
+import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +11,11 @@ import page.CorrectOperations;
 import page.IncorrectOperations;
 import navigator.CommonElementsOperations;
 import navigator.ConnectDisconnectDatabase;
-
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Tests {
+    private static final Logger log = Logger.getLogger(AnyWebDriver.class);
     WebDriver webDriver = new AnyWebDriver().getWebDriver();
 
     @Before
@@ -29,6 +30,7 @@ public class Tests {
 
     @Test
     public void connection_condition_must_be_offline_when_database_is_disconnected(){
+        log.info("starting test...");
         //ARRANGE
         CommonElementsOperations elements = new CommonElementsOperations(new GetMainWebPage().goToWebPage(webDriver));
         String EXPECTED_RESULT = "Offline", actualResult;
@@ -37,10 +39,12 @@ public class Tests {
         actualResult = elements.getDatabaseConditionText();
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT,actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void connection_condition_must_be_online_when_database_is_connected(){
+        log.info("starting test...");
         //ARRANGE
         CommonElementsOperations elements = new CommonElementsOperations(new GetMainWebPage().goToWebPage(webDriver));
         ConnectDisconnectDatabase connectToDatabase = new ConnectDisconnectDatabase(webDriver);
@@ -51,10 +55,12 @@ public class Tests {
         actualResult = elements.getDatabaseConditionText();
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("assert result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void  vip_count_must_change_when_new_vips_are_adding(){
+        log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         CommonElementsOperations elements = new CommonElementsOperations(webDriver);
@@ -69,10 +75,12 @@ public class Tests {
         actualResult = elements.getVipCount();
         //ASSERT
         org.junit.Assert.assertEquals("Incorrect VIP count value", EXPECTED_RESULT, actualResult);
+        log.info("assert result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void vips_data_must_be_input_without_any_changes() {
+        log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         ArrayList<String> gotVipsFromTable = new ArrayList<String>();
@@ -89,10 +97,12 @@ public class Tests {
         actualResult=operations.compareListVips(gotVipsFromTable,sendVipsListToTable);
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void after_successfuly_saving_vips_must_by_popup_with_message(){
+        log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         String EXPECTED_RESULT = "true", actualResult;
@@ -103,10 +113,12 @@ public class Tests {
         actualResult = operations.saveEnteredVips();
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void load_button_must_load_defined_list_of_vips_in_table(){
+        log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         CommonElementsOperations elements = new CommonElementsOperations(webDriver);
@@ -125,10 +137,12 @@ public class Tests {
         actualResult = operations.compareListVips(listOfLoadedVips, etalonVipsList);
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void delete_button_must_delets_from_table_chose_vip(){
+        log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         ArrayList<String> gotVipsList = new ArrayList<String>();
@@ -145,10 +159,12 @@ public class Tests {
         actualResult = operations.compareListVips(etalonVipsList,gotVipsList);
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void delete_button_must_delets_vip_in_table_where_vips_list_was_loaded(){
+        log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         CommonElementsOperations elements = new CommonElementsOperations(webDriver);
@@ -164,10 +180,12 @@ public class Tests {
         actualResult = operations.compareListVips(etalonVipsList,gotVipsList);
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void  vip_count_must_change_when_vips_are_deleting(){
+        log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         CommonElementsOperations elements = new CommonElementsOperations(webDriver);
@@ -179,10 +197,12 @@ public class Tests {
         actualResult = elements.getVipCount();
         //ASSERT
         org.junit.Assert.assertEquals("Incorrect VIP count value", EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void clear_button_must_clears_from_table_all_added_vips(){
+        log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         CommonElementsOperations elements = new CommonElementsOperations(webDriver);
@@ -195,10 +215,12 @@ public class Tests {
         actualResult = operations.countLineInVipsTable();
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void clear_vips_table_using_delete_button(){
+        log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         Integer EXPECTED_RESULT = 1, actualResult;
@@ -212,10 +234,12 @@ public class Tests {
         //ASSERT
         actualResult = operations.countLineInVipsTable();
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void clear_button_must_clears_from_table_all_loaded_vips(){
+        log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         CommonElementsOperations elements = new CommonElementsOperations(webDriver);
@@ -226,10 +250,12 @@ public class Tests {
         actualResult = operations.countLineInVipsTable();
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Test
     public void add_vip_without_first_name_and_last_name_is_impossible(){
+        log.info("starting test...");
         //ARRANGE
         CommonElementsOperations elements = new CommonElementsOperations(new GetMainWebPage().goToWebPage(webDriver));
         IncorrectOperations operations = new IncorrectOperations(webDriver);
@@ -239,10 +265,12 @@ public class Tests {
         actualResult = operations.popupWindowMassageCheck("Please specify 'First Name' value");
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void add_vip_only_with_first_name_is_impossible(){
+        log.info("starting test...");
         //ARRANGE
         CommonElementsOperations elements = new CommonElementsOperations(new GetMainWebPage().goToWebPage(webDriver));
         IncorrectOperations operations = new IncorrectOperations(webDriver);
@@ -253,10 +281,12 @@ public class Tests {
         actualResult = operations.popupWindowMassageCheck("Please specify 'Last Name' value");
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void add_vip_only_with_last_name_is_impossible(){
+        log.info("starting test...");
         //ARRANGE
         CommonElementsOperations elements = new CommonElementsOperations(new GetMainWebPage().goToWebPage(webDriver));
         IncorrectOperations operations = new IncorrectOperations(webDriver);
@@ -267,10 +297,12 @@ public class Tests {
         actualResult = operations.popupWindowMassageCheck("Please specify 'First Name' value");
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void delete_button_is_disable_while_vip_table_is_empty (){
+        log.info("starting test...");
         //ARRANGE
         IncorrectOperations operations = new IncorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         boolean EXPECTED_RESULT = false, actualResult;
@@ -278,10 +310,12 @@ public class Tests {
         actualResult = operations.getButtonCondition("Delete");
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void save_button_is_disable_while_database_is_disconnected (){
+        log.info("starting test...");
         //ARRANGE
         IncorrectOperations operations = new IncorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
         CommonElementsOperations elements = new CommonElementsOperations(webDriver);
@@ -291,10 +325,12 @@ public class Tests {
         actualResult = operations.getButtonCondition("Save");
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
 
     @Test
     public void load_button_is_disable_while_database_is_disconnected (){
+        log.info("starting test...");
         //ARRANGE
         CommonElementsOperations elements = new CommonElementsOperations(webDriver);
         IncorrectOperations operations = new IncorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
@@ -304,6 +340,6 @@ public class Tests {
         actualResult = operations.getButtonCondition("Load");
         //ASSERT
         org.junit.Assert.assertEquals(EXPECTED_RESULT, actualResult);
+        log.info("test result: " + EXPECTED_RESULT + " " + actualResult);
     }
-
 }
