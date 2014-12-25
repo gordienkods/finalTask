@@ -1,6 +1,8 @@
 package page;
 
+import navigator.AnyWebDriver;
 import navigator.CommonElementsOperations;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -11,7 +13,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class CorrectOperations {
-
+    private static final Logger log = Logger.getLogger(AnyWebDriver.class);
     private WebDriver webDriver;
     private ArrayList<String> vipsList = new ArrayList<String>();
     public CorrectOperations (WebDriver webDriver) {
@@ -51,6 +53,7 @@ public class CorrectOperations {
             vipsList.add(firstName+" "+lastName+" "+gender+" "+ category);
         }
         elements.addButtonClick();
+        log.info("New VIP: " + firstName+" "+lastName+" "+gender+" "+category+" successful added...");
     }
 
     public ArrayList<String> getVipInfoFromTable(int i, int j) {
@@ -84,6 +87,7 @@ public class CorrectOperations {
                 if (b < countColumnsInVipsTable - 1 ) {vipInfoFromTableString = vipInfoFromTableString + " "; }
             }
             allVipData.add(vipInfoFromTableString);
+            log.info("VIP data has read from table: " + vipInfoFromTableString);
         }
         return allVipData;
     }
@@ -109,6 +113,7 @@ public class CorrectOperations {
         }
         webDriver.switchTo().window(parentWindowHandle);
         if (successSaveVips.contains("VIP(s) stored sucessfully")) {
+            log.info("Successfuly saved entered VIPs...");
             return "true";
         }
         return "Massage about successful added VIPs didn't find";
@@ -121,6 +126,7 @@ public class CorrectOperations {
                 return "Gave value: " + list1.get(i) + " is different from got value: " + list2.get(i);
             }
         }
+        log.info("VIPs list are same");
         return "true";
     }
 
@@ -128,6 +134,7 @@ public class CorrectOperations {
         CommonElementsOperations elements = new CommonElementsOperations(webDriver);
         webDriver.findElement(By.xpath("//table[@id='VIPs']/tbody/tr[" + (vipLineNumber+1) + "]/td/input[@id='VIP']")).click();
         elements.deleteButtonClick();
+        log.info("VIP number " + (vipLineNumber+1) + " deleted");
     }
 
     public Integer countLineInVipsTable (){
@@ -137,6 +144,7 @@ public class CorrectOperations {
                 webDriver.findElement(By.xpath("//table[@id='VIPs']/tbody/tr["+countLineInVipsTable+"]"));
 
             }catch (org.openqa.selenium.NoSuchElementException e){
+                log.info("Count of lines in VIPs table is " + (countLineInVipsTable-1) );
                 return countLineInVipsTable-1;
             }
             countLineInVipsTable++;

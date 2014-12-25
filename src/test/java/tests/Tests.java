@@ -31,6 +31,7 @@ public class Tests {
     @Test
     public void connection_condition_must_be_offline_when_database_is_disconnected(){
         log.info("starting test...");
+
         //ARRANGE
         CommonElementsOperations elements = new CommonElementsOperations(new GetMainWebPage().goToWebPage(webDriver));
         String EXPECTED_RESULT = "Offline", actualResult;
@@ -101,7 +102,7 @@ public class Tests {
     }
 
     @Test
-    public void after_successfuly_saving_vips_must_by_popup_with_message(){
+    public void after_successfuly_saving_vips_must_be_popup_with_message(){
         log.info("starting test...");
         //ARRANGE
         CorrectOperations operations = new CorrectOperations(new GetMainWebPage().goToWebPage(webDriver));
