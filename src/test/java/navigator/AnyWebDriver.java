@@ -37,6 +37,7 @@ public class AnyWebDriver {
                 return null;
             }
         }
+        log.error("Incorrect webdriver settings! Browser start failed!");
         return null;
     }
 }

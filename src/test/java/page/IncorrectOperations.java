@@ -51,10 +51,10 @@ public class IncorrectOperations {
             buttonCondition = elements.deleteButtonIsEnabled();
         }
         if ("Load".equals(buttonName)){
-            buttonCondition = elements.deleteButtonIsEnabled();
+            buttonCondition = elements.loadButtonIsEnabled();
         }
         if ("Save".equals(buttonName)){
-            buttonCondition = elements.deleteButtonIsEnabled();
+            buttonCondition = elements.saveButtonIsEnabled();
         }
         log.info("Condition of button " + buttonName + " is " + buttonCondition);
         return buttonCondition;

@@ -29,11 +29,12 @@ public class CommonElementsOperations {
     @FindBy (id = "connect") WebElement conDiscButton;
     @FindBy (id = "connection") WebElement dbCondition;
 
-    public void conDisconButtonClick(){
+    public void conDisconButtonClick() {
         try{
             conDiscButton.click();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Connect/Disconnect button' not found");
+            throw e;
         }
     }
 
@@ -42,8 +43,8 @@ public class CommonElementsOperations {
             return dbCondition;
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Database condition' not found");
+            throw e;
         }
-        return null;
     }
 
     public String getDatabaseConditionText(){
@@ -51,8 +52,8 @@ public class CommonElementsOperations {
             return dbCondition.getText();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Database condition' not found");
+            throw e;
         }
-        return null;
     }
 
     public void sendVipFirstName(String vipFirstName){
@@ -60,6 +61,7 @@ public class CommonElementsOperations {
             firstNameField.sendKeys(vipFirstName);
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Field First name' not found");
+            throw e;
         }
     }
 
@@ -68,6 +70,7 @@ public class CommonElementsOperations {
             lastNameField.sendKeys(vipLastName);
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Field Last name' not found");
+            throw e;
         }
     }
 
@@ -76,6 +79,7 @@ public class CommonElementsOperations {
             addButton.click();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Add button' not found");
+            throw e;
         }
     }
 
@@ -84,6 +88,7 @@ public class CommonElementsOperations {
             saveButton.click();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Save button' not found");
+            throw e;
         }
     }
 
@@ -92,6 +97,7 @@ public class CommonElementsOperations {
             deleteButton.click();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Delete button' not found");
+            throw e;
         }
     }
 
@@ -100,8 +106,26 @@ public class CommonElementsOperations {
             return deleteButton.isEnabled();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Delete button' not found");
+            throw e;
         }
-        return false;
+    }
+
+    public boolean loadButtonIsEnabled(){
+        try{
+            return loadButton.isEnabled();
+        } catch (org.openqa.selenium.NoSuchElementException e){
+            log.error("Element 'Load button' not found");
+            throw e;
+        }
+    }
+
+    public boolean saveButtonIsEnabled(){
+        try{
+            return saveButton.isEnabled();
+        } catch (org.openqa.selenium.NoSuchElementException e){
+            log.error("Element 'Save button' not found");
+            throw e;
+        }
     }
 
     public void clearButtonClick(){
@@ -109,6 +133,7 @@ public class CommonElementsOperations {
             clearButton.click();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Clear button' not found");
+            throw e;
         }
     }
 
@@ -117,8 +142,8 @@ public class CommonElementsOperations {
             loadButton.click();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Load button' not found");
+            throw e;
         }
-
     }
 
     public void femaleGenderClick(){
@@ -126,6 +151,7 @@ public class CommonElementsOperations {
             femaleGender.click();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Female radio' not found");
+            throw e;
         }
     }
 
@@ -134,6 +160,7 @@ public class CommonElementsOperations {
             maleGender.click();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Male radio' not found");
+            throw e;
         }
     }
 
@@ -142,8 +169,8 @@ public class CommonElementsOperations {
             return vipCount.getText();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Vip count' not found");
+            throw e;
         }
-        return null;
     }
 
     public String successfulAddVipsGetText(){
@@ -151,8 +178,8 @@ public class CommonElementsOperations {
             return successfulAddVips.getText();
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Successful string' not found");
+            throw e;
         }
-        return null;
     }
 
     public WebElement getListOfCategory(){
@@ -160,7 +187,7 @@ public class CommonElementsOperations {
             return listOfCategory;
         } catch (org.openqa.selenium.NoSuchElementException e){
             log.error("Element 'Category list' not found");
+            throw e;
         }
-        return null;
     }
 }
