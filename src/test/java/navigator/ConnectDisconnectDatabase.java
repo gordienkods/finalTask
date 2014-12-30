@@ -29,7 +29,7 @@ public class ConnectDisconnectDatabase {
 
     public void connectToDatabase(){
         log.info("Connecting to database...");
-        CommonElementsOperations elements = new CommonElementsOperations(webDriver);
+        Elements elements = new Elements(webDriver);
         String parentWindowHandle = webDriver.getWindowHandle();
         String popupWindowHandle = null;
         Set<String> windowSet = null;

@@ -7,9 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import page.CorrectOperations;
-import page.IncorrectOperations;
-import navigator.CommonElementsOperations;
+import page.Steps;
+import navigator.Elements;
 import navigator.ConnectDisconnectDatabase;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
@@ -32,7 +31,7 @@ public class Tests {
     public void connection_condition_must_be_offline_when_database_is_disconnected(){
         log.info("starting test...");
         //ARRANGE
-        CommonElementsOperations elements = new CommonElementsOperations(GoTo.MainWebPage(webDriver));
+        Elements elements = new Elements(GoTo.MainWebPage(webDriver));
         String EXPECTED_RESULT = "Offline", actualResult;
         //ACT
         elements.conDisconButtonClick();
@@ -46,7 +45,7 @@ public class Tests {
     public void connection_condition_must_be_online_when_database_is_connected(){
         log.info("starting test...");
         //ARRANGE
-        CommonElementsOperations elements = new CommonElementsOperations(GoTo.MainWebPage(webDriver));
+        Elements elements = new Elements(GoTo.MainWebPage(webDriver));
         ConnectDisconnectDatabase connectToDatabase = new ConnectDisconnectDatabase(webDriver);
         String EXPECTED_RESULT = "Online", actualResult;
         //ACT
@@ -62,8 +61,8 @@ public class Tests {
     public void  vip_count_must_change_when_new_vips_are_adding(){
         log.info("starting test...");
         //ARRANGE
-        CorrectOperations operations = new CorrectOperations(GoTo.MainWebPage(webDriver));
-        CommonElementsOperations elements = new CommonElementsOperations(webDriver);
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
+        Elements elements = new Elements(webDriver);
         String EXPECTED_RESULT = "VIP count: 6", actualResult;
         //ACT
         operations.addNewVip("Vasya","Pupkin","Male","Other");
@@ -82,7 +81,7 @@ public class Tests {
     public void vips_data_must_be_input_without_any_changes() {
         log.info("starting test...");
         //ARRANGE
-        CorrectOperations operations = new CorrectOperations(GoTo.MainWebPage(webDriver));
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
         ArrayList<String> gotVipsFromTable = new ArrayList<String>();
         ArrayList<String> sendVipsListToTable =  new ArrayList<String>();
         sendVipsListToTable.add("Vasya Pupkin Male Other");
@@ -104,7 +103,7 @@ public class Tests {
     public void after_successfuly_saving_vips_must_be_popup_with_message(){
         log.info("starting test...");
         //ARRANGE
-        CorrectOperations operations = new CorrectOperations(GoTo.MainWebPage(webDriver));
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
         String EXPECTED_RESULT = "true", actualResult;
         operations.addNewVip("Vasya","Pupkin","Male","Other");
         operations.addNewVip("Yula","Ivanova","Female","Music");
@@ -120,8 +119,8 @@ public class Tests {
     public void load_button_must_load_defined_list_of_vips_in_table(){
         log.info("starting test...");
         //ARRANGE
-        CorrectOperations operations = new CorrectOperations(GoTo.MainWebPage(webDriver));
-        CommonElementsOperations elements = new CommonElementsOperations(webDriver);
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
+        Elements elements = new Elements(webDriver);
         ArrayList<String> listOfLoadedVips = new ArrayList<String>();
         ArrayList<String> etalonVipsList = new ArrayList<String>();
         etalonVipsList.add("Sylvester Stallone Male Movie");
@@ -144,7 +143,7 @@ public class Tests {
     public void delete_button_must_delets_from_table_chose_vip(){
         log.info("starting test...");
         //ARRANGE
-        CorrectOperations operations = new CorrectOperations(GoTo.MainWebPage(webDriver));
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
         ArrayList<String> gotVipsList = new ArrayList<String>();
         ArrayList<String> etalonVipsList = new ArrayList<String>();
         String EXPECTED_RESULT = "true", actualResult;
@@ -166,8 +165,8 @@ public class Tests {
     public void delete_button_must_delets_vip_in_table_where_vips_list_was_loaded(){
         log.info("starting test...");
         //ARRANGE
-        CorrectOperations operations = new CorrectOperations(GoTo.MainWebPage(webDriver));
-        CommonElementsOperations elements = new CommonElementsOperations(webDriver);
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
+        Elements elements = new Elements(webDriver);
         ArrayList<String> gotVipsList = new ArrayList<String>();
         ArrayList<String> etalonVipsList = new ArrayList<String>();
         String EXPECTED_RESULT = "true", actualResult;
@@ -187,8 +186,8 @@ public class Tests {
     public void  vip_count_must_change_when_vips_are_deleting(){
         log.info("starting test...");
         //ARRANGE
-        CorrectOperations operations = new CorrectOperations(GoTo.MainWebPage(webDriver));
-        CommonElementsOperations elements = new CommonElementsOperations(webDriver);
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
+        Elements elements = new Elements(webDriver);
         String EXPECTED_RESULT = "VIP count: 4", actualResult;
         //ACT
         elements.loadButtonClick();
@@ -204,8 +203,8 @@ public class Tests {
     public void clear_button_must_clears_from_table_all_added_vips(){
         log.info("starting test...");
         //ARRANGE
-        CorrectOperations operations = new CorrectOperations(GoTo.MainWebPage(webDriver));
-        CommonElementsOperations elements = new CommonElementsOperations(webDriver);
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
+        Elements elements = new Elements(webDriver);
         Integer EXPECTED_RESULT = 1, actualResult;
         //ACT
         operations.addNewVip("Vasya", "Pupkin", "Male", "Other");
@@ -222,7 +221,7 @@ public class Tests {
     public void clear_vips_table_using_delete_button(){
         log.info("starting test...");
         //ARRANGE
-        CorrectOperations operations = new CorrectOperations(GoTo.MainWebPage(webDriver));
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
         Integer EXPECTED_RESULT = 1, actualResult;
         //ACT
         operations.addNewVip("Vasya", "Pupkin", "Male", "Other");
@@ -241,8 +240,8 @@ public class Tests {
     public void clear_button_must_clears_from_table_all_loaded_vips(){
         log.info("starting test...");
         //ARRANGE
-        CorrectOperations operations = new CorrectOperations(GoTo.MainWebPage(webDriver));
-        CommonElementsOperations elements = new CommonElementsOperations(webDriver);
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
+        Elements elements = new Elements(webDriver);
         Integer EXPECTED_RESULT = 1, actualResult;
         //ACT
         elements.loadButtonClick();
@@ -257,8 +256,8 @@ public class Tests {
     public void add_vip_without_first_name_and_last_name_is_impossible(){
         log.info("starting test...");
         //ARRANGE
-        CommonElementsOperations elements = new CommonElementsOperations(GoTo.MainWebPage(webDriver));
-        IncorrectOperations operations = new IncorrectOperations(webDriver);
+        Elements elements = new Elements(GoTo.MainWebPage(webDriver));
+        Steps operations = new Steps(webDriver);
         String EXPECTED_RESULT = "true", actualResult;
         //ACT
         elements.addButtonClick();
@@ -272,8 +271,8 @@ public class Tests {
     public void add_vip_only_with_first_name_is_impossible(){
         log.info("starting test...");
         //ARRANGE
-        CommonElementsOperations elements = new CommonElementsOperations(GoTo.MainWebPage(webDriver));
-        IncorrectOperations operations = new IncorrectOperations(webDriver);
+        Elements elements = new Elements(GoTo.MainWebPage(webDriver));
+        Steps operations = new Steps(webDriver);
         String EXPECTED_RESULT = "true", actualResult;
         //ACT
         elements.sendVipFirstName("Vasya");
@@ -288,8 +287,8 @@ public class Tests {
     public void add_vip_only_with_last_name_is_impossible(){
         log.info("starting test...");
         //ARRANGE
-        CommonElementsOperations elements = new CommonElementsOperations(GoTo.MainWebPage(webDriver));
-        IncorrectOperations operations = new IncorrectOperations(webDriver);
+        Elements elements = new Elements(GoTo.MainWebPage(webDriver));
+        Steps operations = new Steps(webDriver);
         String EXPECTED_RESULT = "true", actualResult;
         //ACT
         elements.sendVipLastName("Petrov");
@@ -304,7 +303,7 @@ public class Tests {
     public void delete_button_is_disable_while_vip_table_is_empty (){
         log.info("starting test...");
         //ARRANGE
-        IncorrectOperations operations = new IncorrectOperations(GoTo.MainWebPage(webDriver));
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
         boolean EXPECTED_RESULT = false, actualResult;
         //ACT
         actualResult = operations.getButtonCondition("Delete");
@@ -317,8 +316,8 @@ public class Tests {
     public void save_button_is_disable_while_database_is_disconnected (){
         log.info("starting test...");
         //ARRANGE
-        IncorrectOperations operations = new IncorrectOperations(GoTo.MainWebPage(webDriver));
-        CommonElementsOperations elements = new CommonElementsOperations(webDriver);
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
+        Elements elements = new Elements(webDriver);
         boolean EXPECTED_RESULT = false, actualResult;
         //ACT
         elements.conDisconButtonClick();
@@ -332,8 +331,8 @@ public class Tests {
     public void load_button_is_disable_while_database_is_disconnected () throws org.openqa.selenium.NoSuchElementException {
         log.info("starting test...");
         //ARRANGE
-        CommonElementsOperations elements = new CommonElementsOperations(webDriver);
-        IncorrectOperations operations = new IncorrectOperations(GoTo.MainWebPage(webDriver));
+        Elements elements = new Elements(webDriver);
+        Steps operations = new Steps(GoTo.MainWebPage(webDriver));
         boolean EXPECTED_RESULT = false, actualResult;
         //ACT
         elements.conDisconButtonClick();

@@ -6,28 +6,28 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class CommonElementsOperations {
+public class Elements {
     private static final Logger log = Logger.getLogger(AnyWebDriver.class);
     private WebDriver webDriver;
-    public CommonElementsOperations (WebDriver webDriver) {
+    public Elements (WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
 
-    @FindBy(id = "FirstName") WebElement firstNameField;
-    @FindBy (id = "LastName") WebElement lastNameField;
-    @FindBy (xpath = "//input[@value='female']") WebElement femaleGender;
-    @FindBy (xpath = "//input[@value='male']") WebElement maleGender;
-    @FindBy (id = "Add") WebElement addButton;
-    @FindBy (id = "Category") WebElement listOfCategory;
-    @FindBy (id = "count") WebElement vipCount;
-    @FindBy (id = "Save") WebElement saveButton;
-    @FindBy (id = "alertTextOK") WebElement successfulAddVips;
-    @FindBy (id = "Load") WebElement loadButton;
-    @FindBy (id = "Delete") WebElement deleteButton;
-    @FindBy (id = "Clear") WebElement clearButton;
-    @FindBy (id = "connect") WebElement conDiscButton;
-    @FindBy (id = "connection") WebElement dbCondition;
+    @FindBy(id = "FirstName") private WebElement firstNameField;
+    @FindBy (id = "LastName") private WebElement lastNameField;
+    @FindBy (xpath = "//input[@value='female']") private WebElement femaleGender;
+    @FindBy (xpath = "//input[@value='male']") private WebElement maleGender;
+    @FindBy (id = "Add") private WebElement addButton;
+    @FindBy (id = "Category") private WebElement listOfCategory;
+    @FindBy (id = "count") private WebElement vipCount;
+    @FindBy (id = "Save") private WebElement saveButton;
+    @FindBy (id = "alertTextOK") private WebElement successfulAddVips;
+    @FindBy (id = "Load") private WebElement loadButton;
+    @FindBy (id = "Delete") private WebElement deleteButton;
+    @FindBy (id = "Clear") private WebElement clearButton;
+    @FindBy (id = "connect") private WebElement conDiscButton;
+    @FindBy (id = "connection") private WebElement dbCondition;
 
     public void conDisconButtonClick() {
         try{
