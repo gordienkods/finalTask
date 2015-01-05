@@ -36,8 +36,16 @@ public class AnyWebDriver {
                 log.error("FireFox started failed!");
                 return null;
             }
+        } else {
+            try{
+                log.info("Starting FireFox...");
+                driver = new FirefoxDriver();
+                log.info("FireFox started successfuly.");
+                return driver;
+            } catch (IllegalStateException e){
+                log.error("Incorrect webdriver settings! Browser start failed!");
+                return null;
+            }
         }
-        log.error("Incorrect webdriver settings! Browser start failed!");
-        return null;
     }
 }

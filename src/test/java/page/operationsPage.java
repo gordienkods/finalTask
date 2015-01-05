@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
-public class Steps {
+public class operationsPage {
     private static final Logger log = Logger.getLogger(AnyWebDriver.class);
     private WebDriver webDriver;
     private ArrayList<String> vipsList = new ArrayList<String>();
-    public Steps (WebDriver webDriver) {
+    public operationsPage (WebDriver webDriver) {
         this.webDriver = webDriver;
         PageFactory.initElements(webDriver, this);
     }
